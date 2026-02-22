@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,32 +12,66 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #1e1e2e; /* Mocha dark theme background */
+            background-color: #1e1e2e;
+            /* Mocha dark theme background */
             color: #cdd6f4;
             font-family: 'Inter', sans-serif;
             overflow: hidden;
         }
+
         #header {
             position: absolute;
             top: 20px;
             left: 30px;
             z-index: 10;
         }
+
         #header h1 {
             margin: 0;
             font-size: 24px;
             color: #cba6f7;
             text-shadow: 0 0 10px rgba(203, 166, 247, 0.3);
         }
+
         #header p {
-            margin: 5px 0 0 0;
+            margin: 5px 0 15px 0;
             font-size: 14px;
             color: #a6adc8;
         }
+
+        .filter-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-container label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #89b4fa;
+        }
+
+        select {
+            background-color: #313244;
+            color: #cdd6f4;
+            border: 1px solid #45475a;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        select:focus {
+            border-color: #89b4fa;
+        }
+
         #main {
             width: 100vw;
             height: 100vh;
         }
+
         /* Stylish Tooltip */
         .tooltip-container {
             max-width: 450px;
@@ -45,12 +80,13 @@
             padding: 20px;
             border-radius: 12px;
             border: 1px solid #313244;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             color: #cdd6f4;
             font-size: 14px;
             backdrop-filter: blur(10px);
             line-height: 1.5;
         }
+
         .tooltip-title {
             font-weight: 700;
             font-size: 18px;
@@ -59,14 +95,17 @@
             border-bottom: 1px solid #45475a;
             padding-bottom: 8px;
         }
+
         .tooltip-section {
             margin-bottom: 12px;
         }
+
         .tooltip-label {
             font-weight: 600;
             color: #f38ba8;
             margin-right: 5px;
         }
+
         .variable-badge {
             display: inline-block;
             background: #313244;
@@ -77,6 +116,7 @@
             margin: 2px 2px;
             font-family: monospace;
         }
+
         .tooltip-template {
             font-style: italic;
             color: #a6e3a1;
@@ -86,181 +126,229 @@
             border-radius: 8px;
             border-left: 3px solid #a6e3a1;
         }
+
         .star-grid {
             display: grid;
             grid-template-columns: 20px 1fr;
             gap: 5px 10px;
             margin-top: 5px;
         }
+
         .star-letter {
             font-weight: bold;
             color: #f9e2af;
         }
     </style>
 </head>
+
 <body>
     <div id="header">
         <h1>Sales Prompt Tree Matrix</h1>
         <p>Hover over a node to view prompt template and metadata details.</p>
+        <div class="filter-container">
+            <label for="source-filter">Datasource Filter:</label>
+            <select id="source-filter">
+                <option value="All">All Sources</option>
+                <option value="Reddit">Reddit</option>
+                <option value="OpenAI">OpenAI</option>
+            </select>
+        </div>
     </div>
     <div id="main"></div>
     <script>
+        let allData = [];
+        const chart = echarts.init(document.getElementById('main'));
+
+        function buildTreeData(data, sourceFilter) {
+            const filteredData = sourceFilter === 'All' ? data : data.filter(d => d.source === sourceFilter);
+
+            const levels = {};
+
+            // Group data by Level and Category/State
+            filteredData.forEach(item => {
+                const levelName = 'Level ' + item.tree_level;
+                const stateName = item.category || item.state || 'Unknown';
+
+                if (!levels[levelName]) {
+                    levels[levelName] = {};
+                }
+                if (!levels[levelName][stateName]) {
+                    levels[levelName][stateName] = [];
+                }
+
+                levels[levelName][stateName].push({
+                    name: item.use_case,
+                    itemData: item
+                });
+            });
+
+            const treeChildren = [];
+
+            // Build ECharts tree structure and calculate counts
+            for (const level in levels) {
+                const levelNode = { name: level, children: [], itemStyle: { color: '#89b4fa', borderColor: '#89b4fa' }, symbolSize: 14 };
+                let levelCount = 0;
+
+                for (const state in levels[level]) {
+                    const stateNode = { name: state, children: [], itemStyle: { color: '#cba6f7', borderColor: '#cba6f7' }, symbolSize: 12 };
+                    const stateCount = levels[level][state].length;
+                    levelCount += stateCount;
+
+                    levels[level][state].forEach(node => {
+                        stateNode.children.push({
+                            name: node.name,
+                            value: node.itemData,
+                            itemStyle: { color: '#f38ba8', borderColor: '#f38ba8' },
+                            symbolSize: 10
+                        });
+                    });
+
+                    // Append count to state name
+                    stateNode.name = `${state} (${stateCount})`;
+                    levelNode.children.push(stateNode);
+                }
+
+                // Append count to level name
+                levelNode.name = `${level} (${levelCount})`;
+                treeChildren.push(levelNode);
+            }
+
+            // Sort levels lexicographically (Level 1, Level 2, etc.)
+            treeChildren.sort((a, b) => a.name.localeCompare(b.name));
+
+            const totalPrompts = filteredData.length;
+
+            return {
+                name: `Prompts (${totalPrompts})`,
+                children: treeChildren
+            };
+        }
+
+        function renderChart(treeData) {
+            const option = {
+                tooltip: {
+                    trigger: 'item',
+                    triggerOn: 'mousemove',
+                    enterable: true,
+                    confine: true,
+                    formatter: function (params) {
+                        if (!params.data.value) {
+                            // Default tooltip for inner nodes (Level, State, Root)
+                            return `<div class="tooltip-container"><div class="tooltip-title" style="margin-bottom:0; border:none; padding:0;">${params.data.name}</div></div>`;
+                        }
+                        const item = params.data.value;
+                        const varsHtml = item.variables.map(v => `<span class="variable-badge">[${v}]</span>`).join(' ');
+
+                        return `
+                            <div class="tooltip-container">
+                                <div class="tooltip-title">${item.use_case} <span style="font-size: 12px; color: #6c7086; float: right; margin-top: 4px;">${item.id}</span></div>
+                                <div class="tooltip-section">
+                                    <span class="tooltip-label">Category:</span> ${item.category || item.state || 'Unknown'} &nbsp;|&nbsp; <span class="tooltip-label">Level:</span> ${item.tree_level} &nbsp;|&nbsp; <span class="tooltip-label">Source:</span> ${item.source || 'Unknown'}
+                                </div>
+                                <div class="tooltip-section">
+                                    <div class="tooltip-label">Template Variables:</div>
+                                    <div style="margin-top: 5px;">${varsHtml}</div>
+                                </div>
+                                <div class="tooltip-section">
+                                    <div class="tooltip-label">STAR Metadata:</div>
+                                    <div class="star-grid">
+                                        <div class="star-letter">S</div><div>${item.metadata.S}</div>
+                                        <div class="star-letter">T</div><div>${item.metadata.T}</div>
+                                        <div class="star-letter">A</div><div>${item.metadata.A}</div>
+                                        <div class="star-letter">R</div><div>${item.metadata.R}</div>
+                                    </div>
+                                </div>
+                                <div class="tooltip-section">
+                                    <div class="tooltip-label">Prompt Template:</div>
+                                    <div class="tooltip-template">"${item.template}"</div>
+                                </div>
+                            </div>
+                        `;
+                    },
+                    backgroundColor: 'transparent',
+                    borderColor: 'transparent',
+                    padding: 0,
+                    shadowBlur: 0,
+                },
+                series: [
+                    {
+                        type: 'tree',
+                        data: [treeData],
+                        top: '10%',
+                        left: '12%',
+                        bottom: '10%',
+                        right: '30%',
+                        symbolSize: 12,
+                        itemStyle: {
+                            color: '#94e2d5',
+                            borderColor: '#94e2d5'
+                        },
+                        label: {
+                            position: 'left',
+                            verticalAlign: 'middle',
+                            align: 'right',
+                            fontSize: 14,
+                            color: '#cdd6f4',
+                            fontFamily: 'Inter',
+                            padding: [0, 8, 0, 0]
+                        },
+                        leaves: {
+                            label: {
+                                position: 'right',
+                                verticalAlign: 'middle',
+                                align: 'left',
+                                padding: [0, 0, 0, 8]
+                            },
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowColor: 'rgba(243, 139, 168, 0.5)'
+                            }
+                        },
+                        emphasis: {
+                            focus: 'descendant',
+                            label: {
+                                color: '#fff',
+                                fontWeight: 'bold'
+                            }
+                        },
+                        expandAndCollapse: true,
+                        initialTreeDepth: 2,
+                        animationDuration: 550,
+                        animationDurationUpdate: 750,
+                        lineStyle: {
+                            color: '#585b70',
+                            width: 2,
+                            curveness: 0.6
+                        }
+                    }
+                ]
+            };
+
+            // Not using notMerge: true keeps the animation smooth on update
+            chart.setOption(option);
+        }
+
         fetch('data/mvp_prompts.json')
             .then(response => response.json())
             .then(data => {
-                const treeData = {
-                    name: 'Prompts',
-                    children: []
-                };
+                allData = data;
 
-                const levels = {};
+                // Initial render
+                const initialTree = buildTreeData(allData, 'All');
+                renderChart(initialTree);
 
-                // Group data by Level and State
-                data.forEach(item => {
-                    const levelName = 'Level ' + item.tree_level;
-                    const stateName = item.state;
-
-                    if (!levels[levelName]) {
-                        levels[levelName] = {};
-                    }
-                    if (!levels[levelName][stateName]) {
-                        levels[levelName][stateName] = [];
-                    }
-
-                    levels[levelName][stateName].push({
-                        name: item.use_case,
-                        itemData: item
-                    });
+                // Dropdown event listener
+                document.getElementById('source-filter').addEventListener('change', function (e) {
+                    const selectedSource = e.target.value;
+                    const newTree = buildTreeData(allData, selectedSource);
+                    renderChart(newTree);
                 });
 
-                // Build ECharts tree structure
-                for (const level in levels) {
-                    const levelNode = { name: level, children: [], itemStyle: { color: '#89b4fa', borderColor: '#89b4fa' }, symbolSize: 14 };
-                    for (const state in levels[level]) {
-                        const stateNode = { name: state, children: [], itemStyle: { color: '#cba6f7', borderColor: '#cba6f7' }, symbolSize: 12 };
-                        levels[level][state].forEach(node => {
-                            stateNode.children.push({
-                                name: node.name,
-                                value: node.itemData,
-                                itemStyle: { color: '#f38ba8', borderColor: '#f38ba8' },
-                                symbolSize: 10
-                            });
-                        });
-                        levelNode.children.push(stateNode);
-                    }
-                    treeData.children.push(levelNode);
-                }
-
-                // Sort levels
-                treeData.children.sort((a, b) => a.name.localeCompare(b.name));
-
-                const chart = echarts.init(document.getElementById('main'));
-
-                const option = {
-                    tooltip: {
-                        trigger: 'item',
-                        triggerOn: 'mousemove',
-                        enterable: true,
-                        confine: true,
-                        formatter: function (params) {
-                            if (!params.data.value) {
-                                // Default tooltip for inner nodes
-                                return `<div class="tooltip-container"><div class="tooltip-title" style="margin-bottom:0; border:none; padding:0;">${params.data.name}</div></div>`;
-                            }
-                            const item = params.data.value;
-                            const varsHtml = item.variables.map(v => `<span class="variable-badge">[${v}]</span>`).join(' ');
-                            
-                            return `
-                                <div class="tooltip-container">
-                                    <div class="tooltip-title">${item.use_case} <span style="font-size: 12px; color: #6c7086; float: right; margin-top: 4px;">${item.id}</span></div>
-                                    <div class="tooltip-section">
-                                        <span class="tooltip-label">State:</span> ${item.state} &nbsp;|&nbsp; <span class="tooltip-label">Level:</span> ${item.tree_level}
-                                    </div>
-                                    <div class="tooltip-section">
-                                        <div class="tooltip-label">Template Variables:</div>
-                                        <div style="margin-top: 5px;">${varsHtml}</div>
-                                    </div>
-                                    <div class="tooltip-section">
-                                        <div class="tooltip-label">STAR Metadata:</div>
-                                        <div class="star-grid">
-                                            <div class="star-letter">S</div><div>${item.metadata.S}</div>
-                                            <div class="star-letter">T</div><div>${item.metadata.T}</div>
-                                            <div class="star-letter">A</div><div>${item.metadata.A}</div>
-                                            <div class="star-letter">R</div><div>${item.metadata.R}</div>
-                                        </div>
-                                    </div>
-                                    <div class="tooltip-section">
-                                        <div class="tooltip-label">Prompt Template:</div>
-                                        <div class="tooltip-template">"${item.template}"</div>
-                                    </div>
-                                </div>
-                            `;
-                        },
-                        backgroundColor: 'transparent',
-                        borderColor: 'transparent',
-                        padding: 0,
-                        shadowBlur: 0,
-                    },
-                    series: [
-                        {
-                            type: 'tree',
-                            data: [treeData],
-                            top: '10%',
-                            left: '12%',
-                            bottom: '10%',
-                            right: '30%',
-                            symbolSize: 12,
-                            itemStyle: {
-                                color: '#94e2d5',
-                                borderColor: '#94e2d5'
-                            },
-                            label: {
-                                position: 'left',
-                                verticalAlign: 'middle',
-                                align: 'right',
-                                fontSize: 14,
-                                color: '#cdd6f4',
-                                fontFamily: 'Inter',
-                                padding: [0, 8, 0, 0]
-                            },
-                            leaves: {
-                                label: {
-                                    position: 'right',
-                                    verticalAlign: 'middle',
-                                    align: 'left',
-                                    padding: [0, 0, 0, 8]
-                                },
-                                itemStyle: {
-                                    shadowBlur: 10,
-                                    shadowColor: 'rgba(243, 139, 168, 0.5)'
-                                }
-                            },
-                            emphasis: {
-                                focus: 'descendant',
-                                label: {
-                                    color: '#fff',
-                                    fontWeight: 'bold'
-                                }
-                            },
-                            expandAndCollapse: true,
-                            initialTreeDepth: 2, /* Expands up to State level automatically */
-                            animationDuration: 550,
-                            animationDurationUpdate: 750,
-                            lineStyle: {
-                                color: '#585b70',
-                                width: 2,
-                                curveness: 0.6
-                            }
-                        }
-                    ]
-                };
-
-                chart.setOption(option);
-                
                 window.addEventListener('resize', () => {
                     chart.resize();
                 });
             });
     </script>
 </body>
+
 </html>

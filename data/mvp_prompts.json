@@ -1,493 +1,1141 @@
 [
     {
-        "id": "LVL1_RED_01",
+        "id": "PR-000",
+        "category": "Cold Email",
         "tree_level": 1,
-        "state": "Prospecting",
         "use_case": "Product Relevance Hook",
         "source": "Reddit",
         "metadata": {
-            "S": "Early outreach after a trigger event.",
-            "T": "Establish relevance via the 'Noticed-Impact-Question' framework.",
-            "A": "Pattern interruption.",
-            "R": "3-line email hook."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "Analyze [company_name]'s recent [announcement] and write a 3-line cold email hook that directly connects our [product] to their stated goal of [specific_goal]. Use the 'noticed-impact-question' framework.",
+        "template": "Analyze [company name]'s recent [announcement/news/initiative] and write a 3-line cold email hook that directly connects our [product/service] to their stated goal of [specific goal]. Use the \"noticed-impact-question\" framework.",
         "variables": [
-            "company_name",
-            "announcement",
-            "product",
-            "specific_goal"
+            "announcement/news/initiative",
+            "company name",
+            "product/service",
+            "specific goal"
         ]
     },
     {
-        "id": "LVL1_RED_02",
+        "id": "PR-001",
+        "category": "Cold Email",
         "tree_level": 1,
-        "state": "Prospecting",
         "use_case": "Pain-Based Outreach",
         "source": "Reddit",
         "metadata": {
-            "S": "Targeting industry-wide friction points.",
-            "T": "Connect via shared struggle and social proof.",
-            "A": "Pattern interrupt + soft CTA.",
-            "R": "Under 125 words, Grade 5 level."
+            "S": "Initial cold or warm outreach to a prospect.",
+            "T": "Book a meeting or get a reply.",
+            "A": "Pattern interrupt / Personalization.",
+            "R": "Email-ready text."
         },
-        "template": "Write a cold email for [industry] companies struggling with [specific_pain_point]. Start with a pattern interrupt, introduce social proof from [similar_company], and end with a soft CTA. Keep it under 125 words and at a grade 5 reading level.",
+        "template": "Write a cold email for [industry] companies struggling with [specific pain point]. Start with a pattern interrupt, introduce social proof from [similar company], and end with a soft CTA. Keep it under 125 words and at a grade 5 reading level.",
         "variables": [
             "industry",
-            "specific_pain_point",
-            "similar_company"
+            "similar company",
+            "specific pain point"
         ]
     },
     {
-        "id": "LVL1_RED_03",
+        "id": "PR-002",
+        "category": "Cold Email",
         "tree_level": 1,
-        "state": "Prospecting",
         "use_case": "Social Proof Angle",
         "source": "Reddit",
         "metadata": {
-            "S": "Prospecting based on validated success stories.",
-            "T": "Showcase ROI in a specific timeframe.",
-            "A": "Consultative case-study framework.",
-            "R": "Short email: Problem-Result-CTA."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "Create a cold email template showcasing how we helped [client_company] achieve [result] in [timeframe]. Structure: attention-grabbing subject line, 1-sentence problem acknowledgment, 2-sentence case study, 1-question CTA.",
+        "template": "Create a cold email template showcasing how we helped [client company] achieve [specific result] in [timeframe]. Structure: attention-grabbing subject line, 1-sentence problem acknowledgment, 2-sentence case study, 1-question CTA. The tone should be consultative, not salesy.",
         "variables": [
-            "client_company",
-            "result",
+            "client company",
+            "specific result",
             "timeframe"
         ]
     },
     {
-        "id": "LVL1_RED_04",
+        "id": "PR-003",
+        "category": "Cold Email",
         "tree_level": 1,
-        "state": "Prospecting",
         "use_case": "Referral Email",
         "source": "Reddit",
         "metadata": {
-            "S": "Warm intro through a mutual connection.",
-            "T": "Leverage social capital to book a meeting.",
-            "A": "Warm intro framework.",
-            "R": "Under 75 words."
+            "S": "Initial cold or warm outreach to a prospect.",
+            "T": "Book a meeting or get a reply.",
+            "A": "Pattern interrupt / Personalization.",
+            "R": "Email-ready text."
         },
-        "template": "Draft a warm intro email. [referrer_name] introduced us. Mention the referral in line 1, establish relevance in line 2, and propose value in line 3. End with a specific calendar link CTA.",
+        "template": "Draft a warm intro email. [Referrer name] introduced us. Mention the referral in line 1, establish relevance in line 2, and propose value in line 3. End with a specific calendar link CTA. Keep the email under 75 words.",
         "variables": [
-            "referrer_name"
+            "Referrer name"
         ]
     },
     {
-        "id": "LVL1_RED_05",
+        "id": "PR-004",
+        "category": "Cold Email",
         "tree_level": 1,
-        "state": "Prospecting",
         "use_case": "LinkedIn Personalization",
         "source": "Reddit",
         "metadata": {
-            "S": "High-intent LinkedIn outreach.",
-            "T": "Personalize based on profile activity.",
-            "A": "Thought-provoking question hook.",
-            "R": "Under 100 words."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "Using this LinkedIn profile [profile_url], write a hyper-personalized cold email that references 2 specific recent activities, connects them to our [solution], and asks one thought-provoking question.",
+        "template": "Using this LinkedIn profile [paste profile URL], write a hyper-personalized cold email that references 2 specific recent activities, connects them to our [solution], and asks one thought-provoking question. The email must be under 100 words.",
         "variables": [
-            "profile_url",
+            "paste profile URL",
             "solution"
         ]
     },
     {
-        "id": "LVL1_RED_06",
+        "id": "PR-005",
+        "category": "Cold Email",
         "tree_level": 1,
-        "state": "Prospecting",
         "use_case": "Objection-Handled Follow-Up",
         "source": "Reddit",
         "metadata": {
-            "S": "Prospect has gone cold due to price/timing.",
-            "T": "Re-engage by addressing objections with data.",
-            "A": "Preemptive objection handling.",
-            "R": "Under 70 words."
+            "S": "Prospect raising concerns about price, timing, or value.",
+            "T": "Defuse concern and move deal forward.",
+            "A": "Empathy-Validation-Reframe.",
+            "R": "Rebuttal script."
         },
-        "template": "Write a follow-up email assuming the prospect's silence is due to [objection]. Preemptively address this with a data point or short story, offer a risk-free next step, and keep it under 70 words.",
+        "template": "Write a follow-up email assuming the prospect's silence is due to [common objection, e.g., 'price is too high']. Preemptively address this objection with a data point or a short customer story, offer a risk-free next step, and keep it under 70 words.",
         "variables": [
-            "objection"
+            "common objection, e.g., 'price is too high'"
         ]
     },
     {
-        "id": "LVL1_RED_07",
+        "id": "PR-006",
+        "category": "Cold Email",
         "tree_level": 1,
-        "state": "Prospecting",
-        "use_case": "Helpful Exit Breakup",
+        "use_case": "\"Helpful Exit\" Breakup Email",
         "source": "Reddit",
         "metadata": {
-            "S": "Final touchpoint after multiple non-responses.",
-            "T": "Provide value and leave the door open.",
-            "A": "Helpful Exit framework.",
-            "R": "Brief value-add + trigger event watch."
+            "S": "Initial cold or warm outreach to a prospect.",
+            "T": "Book a meeting or get a reply.",
+            "A": "Pattern interrupt / Personalization.",
+            "R": "Email-ready text."
         },
-        "template": "Create a final follow-up email using the 'helpful exit' framework. Provide one piece of unexpected value (industry report/tool), and mention a specific future trigger event to watch for.",
-        "variables": [
-            "value_item",
-            "future_trigger"
-        ]
+        "template": "Create a final follow-up email using the \"helpful exit\" framework. Acknowledge the timing might be off, provide one piece of unexpected value (like an industry report or a useful tool), and leave the door open by mentioning a specific future trigger event to watch for.",
+        "variables": []
     },
     {
-        "id": "LVL1_RED_08",
+        "id": "PR-007",
+        "category": "Cold Email",
         "tree_level": 1,
-        "state": "Prospecting",
         "use_case": "Email Rewrite for Clarity",
         "source": "Reddit",
         "metadata": {
-            "S": "Optimizing a low-performing draft.",
-            "T": "Simplify language and strengthen the CTA.",
-            "A": "Conciseness/Grade-level optimization.",
-            "R": "40% shorter, Grade 5 level."
+            "S": "Initial cold or warm outreach to a prospect.",
+            "T": "Book a meeting or get a reply.",
+            "A": "Pattern interrupt / Personalization.",
+            "R": "Email-ready text."
         },
-        "template": "Rewrite this cold email draft: [draft]. Remove jargon, cut 40% of the words, add one specific metric, ensure it's at a grade 5 reading level, and strengthen the CTA.",
+        "template": "Rewrite this cold email draft: [paste email]. Remove all jargon, cut 40% of the words, add one specific metric to show impact, ensure it's at a grade 5 reading level, and strengthen the CTA to book a specific 15-minute slot.",
         "variables": [
-            "draft"
+            "paste email"
         ]
     },
     {
-        "id": "LVL1_RED_09",
+        "id": "PR-008",
+        "category": "Cold Email",
         "tree_level": 1,
-        "state": "Prospecting",
         "use_case": "Subject Line Testing",
         "source": "Reddit",
         "metadata": {
-            "S": "Optimizing open rates for a target persona.",
-            "T": "Generate variety based on curiosity, social proof, and value.",
-            "A": "A/B testing generation.",
-            "R": "10 subject lines < 50 characters."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "Generate 10 cold email subject lines for a [target_role] at a [company_type]. Include 3 based on personalization, 3 on curiosity, 2 on social proof, and 2 on direct value.",
+        "template": "Generate 10 cold email subject lines to send to a [target role] at a [company type]. Include 3 based on personalization, 3 on curiosity, 2 on social proof, and 2 on direct value. Each must be under 50 characters and avoid common spam trigger words.",
         "variables": [
-            "target_role",
-            "company_type"
+            "company type",
+            "target role"
         ]
     },
     {
-        "id": "LVL1_RED_10",
+        "id": "PR-009",
+        "category": "Cold Email",
         "tree_level": 1,
-        "state": "Prospecting",
         "use_case": "Full Sequence Builder",
         "source": "Reddit",
         "metadata": {
-            "S": "Building an automated cadence for an ICP.",
-            "T": "Map multi-touch psychology.",
-            "A": "Pattern-Interrupt sequence logic.",
-            "R": "5-touch sequence with timing."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "Design a 5-touch cold email sequence for a [icp_description]. Define the goal for each touch: Touch 1 (Pattern Interrupt), Touch 2 (Value), Touch 3 (Social Proof), Touch 4 (Objection Handling), and Touch 5 (Breakup).",
+        "template": "Design a 5-touch cold email sequence for a [ICP description]. Define the goal for each touch: Touch 1 (Pattern Interrupt), Touch 2 (Value-First), Touch 3 (Social Proof), Touch 4 (Objection Handling), and Touch 5 (Breakup). Specify the ideal timing between sends.",
         "variables": [
-            "icp_description"
+            "ICP description"
         ]
     },
     {
-        "id": "LVL2_RED_11",
+        "id": "PR-010",
+        "category": "Sales Prep",
         "tree_level": 2,
-        "state": "Discovery",
         "use_case": "Company Summary for Context",
         "source": "Reddit",
         "metadata": {
-            "S": "Pre-meeting intelligence gathering.",
-            "T": "Summarize value prop and predict strategic goals/headwinds.",
-            "A": "Environmental scanning.",
-            "R": "Paragraph + 3 goals + 1 headwind."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "I am meeting with [company_name]. Based on their website [url] and latest news, summarize what they do and list 3 potential strategic goals and 1 major headwind they face.",
+        "template": "I am meeting with [Company Name]. Based on their website [URL] and their latest news, summarize what they do, who they serve, and their core value proposition in one paragraph. Then, list 3 potential strategic goals they might have for this year and one major headwind they might be facing.",
         "variables": [
-            "company_name",
-            "url"
+            "Company Name",
+            "URL"
         ]
     },
     {
-        "id": "LVL2_RED_12",
+        "id": "PR-011",
+        "category": "Sales Prep",
         "tree_level": 2,
-        "state": "Discovery",
         "use_case": "Role-Specific Pain Points",
         "source": "Reddit",
         "metadata": {
-            "S": "Targeting a specific stakeholder (e.g., CFO vs. IT).",
-            "T": "Identify role-based friction.",
-            "A": "Persona empathy mapping.",
-            "R": "5 problems + discovery question for each."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "I'm preparing for a call with [name], the [title] at [company]. Given their role in the [industry], what are 5 specific business problems they face? Suggest one open-ended discovery question for each.",
+        "template": "I'm preparing for a call with [Prospect's Name], the [Prospect's Job Title] at [Company]. Given their role in the [Industry] industry, what are 5 specific business problems or friction points they are likely facing on a daily basis? For each, suggest one open-ended discovery question I can ask to uncover that pain.",
         "variables": [
-            "name",
-            "title",
-            "company",
-            "industry"
+            "Company",
+            "Industry",
+            "Prospect's Job Title",
+            "Prospect's Name"
         ]
     },
     {
-        "id": "LVL2_RED_13",
+        "id": "PR-012",
+        "category": "Sales Prep",
         "tree_level": 2,
-        "state": "Discovery",
         "use_case": "60-Second Call Opener",
         "source": "Reddit",
         "metadata": {
-            "S": "Starting the discovery call.",
-            "T": "Establish control and confirm agenda.",
-            "A": "Professional opening script.",
-            "R": "60-second script."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "Write a concise script for the first 60 seconds of a discovery call with a [title]. Include: confirming time, restating goals, agenda layout, and permission to begin.",
+        "template": "Write a confident, concise script for the first 60 seconds of a discovery call I will have with a [Prospect's Job Title]. The script should: 1. Confirm they have time. 2. Briefly restate my understanding of their goals. 3. Lay out a clear agenda. 4. Ask for permission to begin.",
         "variables": [
-            "title"
+            "Prospect's Job Title"
         ]
     },
     {
-        "id": "LVL2_RED_14",
+        "id": "PR-013",
+        "category": "Sales Prep",
         "tree_level": 2,
-        "state": "Discovery",
-        "use_case": "Discovery Questions (Qualify Fast)",
+        "use_case": "Discovery Questions to Qualify Fast",
         "source": "Reddit",
         "metadata": {
-            "S": "Qualifying leads mid-call.",
-            "T": "Uncover pain and purchasing process.",
-            "A": "SPIN-adjacent questioning.",
-            "R": "10 consultative questions."
+            "S": "Early qualification call.",
+            "T": "Identify pain and decision process.",
+            "A": "Open-ended consultative questioning.",
+            "R": "List of questions."
         },
-        "template": "Generate 10 sharp discovery questions to ask a [title] in the [industry] to uncover pain points, quantify impact, and understand their purchasing process.",
+        "template": "Generate 10 sharp discovery questions I should ask a [Prospect's Job Title] in the [Industry] to help me uncover their pain points, quantify the impact, and understand their purchasing process. The questions should feel natural and consultative, not like an interrogation.",
         "variables": [
-            "title",
-            "industry"
+            "Industry",
+            "Prospect's Job Title"
         ]
     },
     {
-        "id": "LVL3_RED_15",
-        "tree_level": 3,
-        "state": "Solution Design",
+        "id": "PR-014",
+        "category": "Sales Prep",
+        "tree_level": 2,
         "use_case": "Objection Prediction & Prep",
         "source": "Reddit",
         "metadata": {
-            "S": "Mid-funnel resistance.",
-            "T": "Validate concerns and reframe them as strengths.",
-            "A": "Empathy-Validation-Reframe method.",
-            "R": "Top 3 objections + rebuttal scripts."
+            "S": "Prospect raising concerns about price, timing, or value.",
+            "T": "Defuse concern and move deal forward.",
+            "A": "Empathy-Validation-Reframe.",
+            "R": "Rebuttal script."
         },
-        "template": "I am selling [product] for [purpose]. Based on this buyer profile ([title], [size], [industry]), what are the top 3 objections? Provide a confident, empathetic response for each.",
+        "template": "I am selling [Your Product], a solution for [what it does]. Based on this buyer profile ([Prospect's Job Title], [Company Size], [Industry]), what are the top 3 objections I am likely to hear? For each, provide a confident, empathetic response that validates their concern before reframing it.",
         "variables": [
-            "product",
-            "purpose",
-            "title",
-            "size",
-            "industry"
+            "Company Size",
+            "Industry",
+            "Prospect's Job Title",
+            "Your Product",
+            "what it does"
         ]
     },
     {
-        "id": "LVL3_RED_16",
-        "tree_level": 3,
-        "state": "Solution Design",
+        "id": "PR-015",
+        "category": "Sales Prep",
+        "tree_level": 2,
         "use_case": "Competitor Comparison Points",
         "source": "Reddit",
         "metadata": {
-            "S": "Displacing an incumbent competitor.",
-            "T": "Highlight differentiators without being negative.",
-            "A": "Challenger 'Teaching' method.",
-            "R": "3 points + questions to lead prospect there."
+            "S": "Competitive deal with incumbent or rival.",
+            "T": "Position own solution as superior.",
+            "A": "Differentiation and trap-setting.",
+            "R": "Comparative table/text."
         },
-        "template": "Our main competitor is [competitor]. My prospect uses them. Give me 3 comparison points that highlight our differentiators. For each, provide a question to lead the prospect to that conclusion.",
+        "template": "Our main competitor is [Competitor Name]. My prospect currently uses them. Give me 3 comparison points that highlight our key differentiators without being negative about the competitor. For each point, provide a question I can ask the prospect to lead them to that conclusion themselves.",
         "variables": [
-            "competitor"
+            "Competitor Name"
         ]
     },
     {
-        "id": "LVL3_RED_18",
-        "tree_level": 3,
-        "state": "Solution Design",
+        "id": "PR-016",
+        "category": "Sales Prep",
+        "tree_level": 2,
+        "use_case": "Trend-Based Insight Hook",
+        "source": "Reddit",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "I want to sound like I understand their world. Give me 3 industry-specific trends relevant to a [Prospect's Role] in the [Industry] in [current year]. For each trend, provide a 1-sentence summary and a question I could ask to naturally bring it up during a call.",
+        "variables": [
+            "Industry",
+            "Prospect's Role",
+            "current year"
+        ]
+    },
+    {
+        "id": "PR-017",
+        "category": "Sales Prep",
+        "tree_level": 2,
         "use_case": "Status Quo Reframe",
         "source": "Reddit",
         "metadata": {
-            "S": "Prospect is stuck in 'good enough' mindset.",
-            "T": "Create urgency through the cost of inaction.",
-            "A": "Loss aversion psychology.",
-            "R": "Short narrative on hidden risks/costs."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "My prospect believes their current process for [task] is 'good enough.' Write a narrative that reframes the status quo, highlighting the hidden costs and risks of inaction.",
+        "template": "My prospect believes their current solution/process for [task] is \"good enough.\" Write a short narrative that reframes the \"status quo,\" highlighting the hidden costs, risks, or missed opportunities of inaction to create urgency.",
         "variables": [
             "task"
         ]
     },
     {
-        "id": "LVL4_RED_19",
-        "tree_level": 4,
-        "state": "Closing",
+        "id": "PR-018",
+        "category": "Sales Prep",
+        "tree_level": 2,
         "use_case": "Closing with Next Steps",
         "source": "Reddit",
         "metadata": {
-            "S": "End of a successful meeting.",
-            "T": "Define the path to a formal proposal/demo.",
-            "A": "Closing statement script.",
-            "R": "Summary + 2 distinct next steps."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "Write a script for a closing statement that summarizes discussed value and suggests two clear next steps (e.g., proposal, technical demo) for the prospect to choose.",
-        "variables": [
-            "next_step_options"
-        ]
+        "template": "I want to end a sales call where there's clear interest. Write a script for a closing statement that summarizes the value we discussed and suggests two clear, distinct next steps (e.g., a formal proposal, a technical demo), allowing the prospect to choose.",
+        "variables": []
     },
     {
-        "id": "LVL1_RED_21",
-        "tree_level": 1,
-        "state": "Prospecting",
-        "use_case": "LinkedIn 'About' Analyzer",
+        "id": "PR-019",
+        "category": "Sales Prep",
+        "tree_level": 2,
+        "use_case": "Pre-Call Reminder Email",
         "source": "Reddit",
         "metadata": {
-            "S": "Scaling personalized outreach.",
-            "T": "Extract a compelling interest or achievement.",
-            "A": "Hyper-personalization.",
-            "R": "3 different first-line options."
+            "S": "Initial cold or warm outreach to a prospect.",
+            "T": "Book a meeting or get a reply.",
+            "A": "Pattern interrupt / Personalization.",
+            "R": "Email-ready text."
         },
-        "template": "Scan this LinkedIn profile 'About' section: [about]. Identify the single most compelling personal interest or career achievement. Write 3 different first lines for a cold email referencing this.",
+        "template": "Write a short email I can send the day before a scheduled call. It should confirm the time, briefly restate the #1 goal for the meeting from their perspective, and mention one specific thing they will learn.",
+        "variables": []
+    },
+    {
+        "id": "PR-020",
+        "category": "Prospecting",
+        "tree_level": 1,
+        "use_case": "LinkedIn Personalization",
+        "source": "Reddit",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Scan this LinkedIn profile \"About\" section: [Paste 'About' section]. Identify the single most compelling personal interest, unique career achievement, or strong opinion expressed. Write 3 different first lines for a cold email that reference this insight.",
         "variables": [
-            "about"
+            "Paste 'About' section"
         ]
     },
     {
-        "id": "LVL1_RED_23",
+        "id": "PR-021",
+        "category": "Prospecting",
         "tree_level": 1,
-        "state": "Prospecting",
+        "use_case": "Company Intel Summary",
+        "source": "Reddit",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Analyze this company's website: [URL]. Provide a 1-paragraph summary of their mission and target customer. Then, find one recent press release and suggest how I can use it as a \"reason for reaching out now\" in a cold email.",
+        "variables": [
+            "URL"
+        ]
+    },
+    {
+        "id": "PR-022",
+        "category": "Prospecting",
+        "tree_level": 1,
         "use_case": "Trigger-Based Outreach Angle",
         "source": "Reddit",
         "metadata": {
-            "S": "Company event (Series B, Merger, etc.).",
-            "T": "Connect the event to a challenge.",
-            "A": "Congratulate + Connect framework.",
-            "R": "Cold email text."
+            "S": "Initial cold or warm outreach to a prospect.",
+            "T": "Book a meeting or get a reply.",
+            "A": "Pattern interrupt / Personalization.",
+            "R": "Email-ready text."
         },
-        "template": "[company] just announced [event]. Write a cold email to the [title] that congratulates them and connects this event to a challenge [product] can solve.",
+        "template": "[Company Name] just announced [trigger event]. Write a cold email to the [Prospect's Job Title] that congratulates them and connects this event to a challenge or opportunity that [Your Product] can help with.",
         "variables": [
-            "company",
-            "event",
-            "title",
-            "product"
+            "Company Name",
+            "Prospect's Job Title",
+            "Your Product",
+            "trigger event"
         ]
     },
     {
-        "id": "LVL1_RED_25",
+        "id": "PR-023",
+        "category": "Prospecting",
         "tree_level": 1,
-        "state": "Prospecting",
+        "use_case": "Job Change Outreach",
+        "source": "Reddit",
+        "metadata": {
+            "S": "Initial cold or warm outreach to a prospect.",
+            "T": "Book a meeting or get a reply.",
+            "A": "Pattern interrupt / Personalization.",
+            "R": "Email-ready text."
+        },
+        "template": "[Prospect's Name] recently started a new role as [Prospect's Job Title] at [Company Name]. Write a cold email that recognizes their new role and positions my product, [Your Product], as a strategic tool to help them succeed in their first 90 days.",
+        "variables": [
+            "Company Name",
+            "Prospect's Job Title",
+            "Prospect's Name",
+            "Your Product"
+        ]
+    },
+    {
+        "id": "PR-024",
+        "category": "Prospecting",
+        "tree_level": 1,
         "use_case": "Persona Pain Mapping",
         "source": "Reddit",
         "metadata": {
-            "S": "Strategy phase.",
-            "T": "Map pains to product features.",
-            "A": "Solution-Value mapping.",
-            "R": "5 pains, 5 goals, 5 solutions."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "I'm targeting the [title] in the [industry]. List 5 business pains and 5 strategic goals. Suggest how [product] helps address each.",
+        "template": "I'm targeting the [Job Title] in the [Industry]. List 5 specific business pains they're likely to experience and 5 key strategic goals they're likely responsible for. For each pain/goal, suggest how [Your Product] helps them address it.",
         "variables": [
-            "title",
-            "industry",
-            "product"
+            "Industry",
+            "Job Title",
+            "Your Product"
         ]
     },
     {
-        "id": "LVL3_RED_31",
+        "id": "PR-025",
+        "category": "Prospecting",
+        "tree_level": 1,
+        "use_case": "Website \"Email Personalization\" Analyzer",
+        "source": "Reddit",
+        "metadata": {
+            "S": "Initial cold or warm outreach to a prospect.",
+            "T": "Book a meeting or get a reply.",
+            "A": "Pattern interrupt / Personalization.",
+            "R": "Email-ready text."
+        },
+        "template": "Analyze this company's homepage and \"About Us\" page: [URL]. Identify the top 3 keywords or phrases they use to describe their own values or mission. Then, write a cold email opener that subtly mirrors this language.",
+        "variables": [
+            "URL"
+        ]
+    },
+    {
+        "id": "PR-026",
+        "category": "Prospecting",
+        "tree_level": 1,
+        "use_case": "Tech Stack Prospecting Angle",
+        "source": "Reddit",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "My prospect, [Company Name], uses [Technology Name]. My product, [Your Product], is a [complement or alternative] to that technology. Write a cold email that acknowledges their use of [Technology Name] and explains how our solution can enhance it or solve its common limitations.",
+        "variables": [
+            "Company Name",
+            "Technology Name",
+            "Your Product",
+            "complement or alternative"
+        ]
+    },
+    {
+        "id": "PR-027",
+        "category": "Prospecting",
+        "tree_level": 1,
+        "use_case": "Use Case Generation",
+        "source": "Reddit",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Given my product, [Product Description], generate 3 specific and non-obvious use cases for how a company in the [Prospect's Industry] could use it to gain a competitive advantage.",
+        "variables": [
+            "Product Description",
+            "Prospect's Industry"
+        ]
+    },
+    {
+        "id": "PR-028",
+        "category": "Prospecting",
+        "tree_level": 1,
+        "use_case": "Priority Lead Ranking",
+        "source": "Reddit",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "I have a list of 100 potential leads in the [Industry]. Based on what my product does [Product Description], suggest a simple 3-factor scoring system I can use to rank them from highest to lowest priority.",
+        "variables": [
+            "Industry",
+            "Product Description"
+        ]
+    },
+    {
+        "id": "PR-029",
+        "category": "Prospecting",
+        "tree_level": 1,
+        "use_case": "Icebreaker Ideas from Public Content",
+        "source": "Reddit",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "My prospect, [Prospect's Name], recently appeared on this podcast: [Link]. Analyze the content and extract one insightful comment they made. Write a short email opener that references their comment and asks a thoughtful follow-up question.",
+        "variables": [
+            "Link",
+            "Prospect's Name"
+        ]
+    },
+    {
+        "id": "PR-030",
+        "category": "Advanced",
         "tree_level": 3,
-        "state": "Solution Design",
-        "use_case": "Feature-to-Benefit Translator",
+        "use_case": "Feature-to-Benefit-to-Proof Translator",
         "source": "Reddit",
         "metadata": {
-            "S": "Building a formal proposal.",
-            "T": "Communicate proof points to executives.",
-            "A": "Executive translation.",
-            "R": "1 'Knockout' paragraph."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "Act as a strategic advisor. Take this feature: '[feature]'. 1. Translate it into a Benefit for [persona]. 2. Provide a Proof Point. 3. Frame it as a 'Knockout' paragraph for a proposal.",
+        "template": "Act as a strategic advisor. Take this product feature: \"[Feature Description].\" 1. Translate it into a clear business Benefit for a [Target Executive Persona]. 2. Provide a Proof Point. 3. Frame it as a \"Knockout\" paragraph for a proposal.",
         "variables": [
-            "feature",
-            "persona"
+            "Feature Description",
+            "Target Executive Persona"
         ]
     },
     {
-        "id": "LVL3_RED_33",
+        "id": "PR-031",
+        "category": "Advanced",
         "tree_level": 3,
-        "state": "Solution Design",
-        "use_case": "Economic Justification (ROI)",
+        "use_case": "Objection Preemption Playbook",
         "source": "Reddit",
         "metadata": {
-            "S": "Winning the CFO.",
-            "T": "Create a back-of-the-napkin calculation.",
-            "A": "ROI Modeling.",
-            "R": "Calculation summary."
+            "S": "Prospect raising concerns about price, timing, or value.",
+            "T": "Defuse concern and move deal forward.",
+            "A": "Empathy-Validation-Reframe.",
+            "R": "Rebuttal script."
         },
-        "template": "Help me build an ROI model. [product] costs [$amount]. It solves [problem] via 3 outcomes: [outcome1, 2, 3]. Generate a simple ROI calculation.",
+        "template": "My prospect, a [Prospect's Role], will likely object with: \"[The Objection].\" Develop a short script that preemptively addresses this concern during a demo, framing it as a strength or a common misconception.",
         "variables": [
-            "product",
-            "$amount",
-            "problem",
-            "outcome1",
-            "outcome2",
-            "outcome3"
+            "Prospect's Role",
+            "The Objection"
         ]
     },
     {
-        "id": "LVL4_RED_39",
-        "tree_level": 4,
-        "state": "Closing",
-        "use_case": "Mutual Action Plan (MAP)",
+        "id": "PR-032",
+        "category": "Advanced",
+        "tree_level": 3,
+        "use_case": "Economic Justification Builder",
         "source": "Reddit",
         "metadata": {
-            "S": "Complex deal with long lead time.",
-            "T": "Align milestones to prevent deal slippage.",
-            "A": "Project alignment framework.",
-            "R": "45-day timeline."
+            "S": "Securing budget with economic buyers.",
+            "T": "Prove financial impact.",
+            "A": "ROI modeling / Economic mapping.",
+            "R": "Calculated business case."
         },
-        "template": "Create a draft for a Mutual Action Plan for a deal with [company] for [product]. 45-day timeline including: Technical Validation, Security Review, Legal Review, Business Case, and Signature.",
+        "template": "Help me build an ROI model. My product costs [$Amount]. It helps a [Target Persona] solve [Problem] by delivering outcomes: [Outcomes with metrics]. Generate a simple, back-of-the-napkin ROI calculation.",
         "variables": [
-            "company",
-            "product"
+            "$Amount",
+            "Outcomes with metrics",
+            "Problem",
+            "Target Persona"
         ]
     },
     {
-        "id": "LVL4_OA_OUT_01",
-        "tree_level": 4,
-        "state": "Operations",
-        "use_case": "Draft renewal pitch",
-        "source": "OpenAI",
+        "id": "PR-033",
+        "category": "Advanced",
+        "tree_level": 3,
+        "use_case": "Temporal Leverage Builder",
+        "source": "Reddit",
         "metadata": {
-            "S": "Existing customer at contract end.",
-            "T": "Retain revenue and highlight past value.",
-            "A": "Renewal recommendation framework.",
-            "R": "Short pitch + follow-up email."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "Draft a renewal pitch for [customer] based on this history: [data]. Include ROI proof points and recommendation.",
+        "template": "Identify three time-sensitive triggers currently affecting a [Prospect's Industry]. For each trigger, write a one-sentence \"urgency statement\" that connects this external pressure to the need for a solution like [Your Product] today.",
         "variables": [
-            "customer",
-            "data"
+            "Prospect's Industry",
+            "Your Product"
         ]
     },
     {
-        "id": "LVL4_OA_DATA_01",
-        "tree_level": 4,
-        "state": "Data Analysis",
-        "use_case": "Pipeline Conversion Analysis",
-        "source": "OpenAI",
+        "id": "PR-034",
+        "category": "Advanced",
+        "tree_level": 3,
+        "use_case": "Jargon Decoder",
+        "source": "Reddit",
         "metadata": {
-            "S": "Ops review of sales funnel.",
-            "T": "Find drop-off points.",
-            "A": "Statistical diagnostic.",
-            "R": "Table + short summary."
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
         },
-        "template": "Analyze this pipeline export. Calculate conversion rates between stages and identify the biggest drop-off point. Data: [data].",
+        "template": "Analyze job descriptions: [Paste text]. Identify their internal jargon, core values, and communication style. Suggest 3 ways I can adapt my own language and pitch to align with their culture.",
         "variables": [
-            "data"
+            "Paste text"
         ]
     },
     {
-        "id": "LVL4_OA_COL_01",
-        "tree_level": 4,
-        "state": "Collateral",
-        "use_case": "Visualize B2B Funnel",
+        "id": "PR-035",
+        "category": "Advanced",
+        "tree_level": 3,
+        "use_case": "Glassdoor Pain Extractor",
+        "source": "Reddit",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Go through the last 10 months of Glassdoor reviews for [Company Name]'s [Department]. Identify the most common recurring complaint. Frame this problem as a pain point my [Your Product] can solve.",
+        "variables": [
+            "Company Name",
+            "Department",
+            "Your Product"
+        ]
+    },
+    {
+        "id": "PR-036",
+        "category": "Advanced",
+        "tree_level": 3,
+        "use_case": "Competitor Autopsy",
+        "source": "Reddit",
+        "metadata": {
+            "S": "Competitive deal with incumbent or rival.",
+            "T": "Position own solution as superior.",
+            "A": "Differentiation and trap-setting.",
+            "R": "Comparative table/text."
+        },
+        "template": "I am selling [Your Product]. My main competitor is [Competitor Product]. Based on [Competitor URL], create a 'Battle Card' with: Core pitch, 3 strengths, 3 weaknesses, and 3 questions to expose those weaknesses.",
+        "variables": [
+            "Competitor Product",
+            "Competitor URL",
+            "Your Product"
+        ]
+    },
+    {
+        "id": "PR-037",
+        "category": "Advanced",
+        "tree_level": 3,
+        "use_case": "Internal Champion Enablement",
+        "source": "Reddit",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "My internal champion needs to convince their boss. Write a short, bullet-pointed email they can forward to their boss summarizing the problem, solution, ROI, and next step.",
+        "variables": []
+    },
+    {
+        "id": "PR-038",
+        "category": "Advanced",
+        "tree_level": 3,
+        "use_case": "Mutual Action Plan Draft",
+        "source": "Reddit",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Create a draft for a Mutual Action Plan for a deal with [Company Name] for [Your Product]. Include a 45-day timeline with milestones (Technical Validation, Security Review, Legal Review, etc.).",
+        "variables": [
+            "Company Name",
+            "Your Product"
+        ]
+    },
+    {
+        "id": "PR-039",
+        "category": "Advanced",
+        "tree_level": 3,
+        "use_case": "Pricing Tier Justification",
+        "source": "Reddit",
+        "metadata": {
+            "S": "Securing budget with economic buyers.",
+            "T": "Prove financial impact.",
+            "A": "ROI modeling / Economic mapping.",
+            "R": "Calculated business case."
+        },
+        "template": "A prospect is asking why they should choose our [Higher-Priced Plan] over the [Lower-Priced Plan]. Explain the unique value in three bullet points focusing on specific enterprise needs.",
+        "variables": [
+            "Higher-Priced Plan",
+            "Lower-Priced Plan"
+        ]
+    },
+    {
+        "id": "PR-040",
+        "category": "Outreach",
+        "tree_level": 1,
+        "use_case": "Draft a personalized cold outreach email",
         "source": "OpenAI",
         "metadata": {
-            "S": "Sales enablement material.",
-            "T": "Standardize the funnel for training.",
-            "A": "Visual asset creation.",
-            "R": "Funnel image description/generation."
+            "S": "Initial cold or warm outreach to a prospect.",
+            "T": "Book a meeting or get a reply.",
+            "A": "Pattern interrupt / Personalization.",
+            "R": "Email-ready text."
         },
-        "template": "Create an image of a standard B2B SaaS sales funnel with stages: Prospecting, Discovery, Demo, Proposal, Closed Won/Lost. Clean, modern icons.",
+        "template": "Write a short, compelling cold email to a [job title] at [company name] introducing our product. Use the background below to customize it. Background: [insert value props or ICP info]. Format it in email-ready text.",
         "variables": [
-            "funnel_stages"
+            "company name",
+            "insert value props or ICP info",
+            "job title"
         ]
+    },
+    {
+        "id": "PR-041",
+        "category": "Outreach",
+        "tree_level": 1,
+        "use_case": "Rework demo follow-up email",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "Initial cold or warm outreach to a prospect.",
+            "T": "Book a meeting or get a reply.",
+            "A": "Pattern interrupt / Personalization.",
+            "R": "Email-ready text."
+        },
+        "template": "Rewrite this follow-up email after a demo to sound more consultative. Original email: [paste here]. Include recap, next steps, and call scheduling CTA. Output as email text.",
+        "variables": [
+            "paste here"
+        ]
+    },
+    {
+        "id": "PR-042",
+        "category": "Outreach",
+        "tree_level": 1,
+        "use_case": "Draft renewal pitch for key customer",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Draft a renewal pitch for [customer name] based on this renewal history and value data: [paste data]. Include key ROI proof points and renewal recommendation. Output as a short pitch and optional follow-up email.",
+        "variables": [
+            "customer name",
+            "paste data"
+        ]
+    },
+    {
+        "id": "PR-043",
+        "category": "Operations",
+        "tree_level": 4,
+        "use_case": "Create summary of rep activity",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Write a daily update summarizing key rep activities. Inputs: [paste call summaries or CRM exports]. Make it upbeat and concise. Output as 3\u20135 bullet message.",
+        "variables": [
+            "paste call summaries or CRM exports"
+        ]
+    },
+    {
+        "id": "PR-044",
+        "category": "Operations",
+        "tree_level": 4,
+        "use_case": "Draft exec update on pipeline status",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Summarize our pipeline health this month for execs. Inputs: [paste data]. Include total pipeline, top risks, biggest wins, and forecast confidence. Write it like a short exec update.",
+        "variables": [
+            "paste data"
+        ]
+    },
+    {
+        "id": "PR-045",
+        "category": "Strategy",
+        "tree_level": 1,
+        "use_case": "Generate strategic account plan",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Create an account plan for [customer name]. Use these inputs: company profile, known priorities, current product usage, stakeholders, and renewal date. Output a structured plan with goals, risks, opportunities, and next steps.",
+        "variables": [
+            "customer name"
+        ]
+    },
+    {
+        "id": "PR-046",
+        "category": "Strategy",
+        "tree_level": 1,
+        "use_case": "Design territory planning framework",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Create a territory planning guide for our next fiscal year. Inputs: team headcount, target industries, regions, and historical revenue. Recommend allocation method and sample coverage plan.",
+        "variables": []
+    },
+    {
+        "id": "PR-047",
+        "category": "Strategy",
+        "tree_level": 1,
+        "use_case": "Prioritize accounts using firmographic data",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "Collateral preparation.",
+            "T": "Improve understanding via visual aid.",
+            "A": "Asset description/design.",
+            "R": "Image or diagram description."
+        },
+        "template": "I have this list of accounts: [paste sample]. Prioritize them based on [criteria]. Output a ranked list with reasons why.",
+        "variables": [
+            "criteria",
+            "paste sample"
+        ]
+    },
+    {
+        "id": "PR-048",
+        "category": "Strategy",
+        "tree_level": 1,
+        "use_case": "Spot high-potential accounts using weighted scoring",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Score accounts based on [insert rules]. Data: [Upload account list]. Output top 10 ranked accounts with their score and a note explaining why.",
+        "variables": [
+            "Upload account list",
+            "insert rules"
+        ]
+    },
+    {
+        "id": "PR-049",
+        "category": "Strategy",
+        "tree_level": 1,
+        "use_case": "Regional market entry planning",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "I\u2019m evaluating market entry into [region/country] for our [SaaS solution]. Research local buying behaviors, competitive landscape, economic conditions, and regulatory concerns. Format as a go/no-go market readiness summary.",
+        "variables": [
+            "SaaS solution",
+            "region/country"
+        ]
+    },
+    {
+        "id": "PR-050",
+        "category": "Enablement",
+        "tree_level": 2,
+        "use_case": "Create battlecard for competitor",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "Competitive deal with incumbent or rival.",
+            "T": "Position own solution as superior.",
+            "A": "Differentiation and trap-setting.",
+            "R": "Comparative table/text."
+        },
+        "template": "Create a battlecard for [competitor name]. Use these notes: [insert positioning data]. Include strengths, weaknesses, how we win, and quick talk track. Output as table format.",
+        "variables": [
+            "competitor name",
+            "insert positioning data"
+        ]
+    },
+    {
+        "id": "PR-051",
+        "category": "Enablement",
+        "tree_level": 2,
+        "use_case": "Competitive positioning analysis",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "Reviewing sales performance or pipeline.",
+            "T": "Identify trends and leaks.",
+            "A": "Statistical analysis of CRM data.",
+            "R": "Report with insights."
+        },
+        "template": "I\u2019m preparing a competitive battlecard for [competitor name]. Research their pricing model, product positioning, recent customer wins/losses, and sales motion. Compare it to ours.",
+        "variables": [
+            "competitor name"
+        ]
+    },
+    {
+        "id": "PR-052",
+        "category": "Enablement",
+        "tree_level": 2,
+        "use_case": "Create a sales enablement one-pager",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Create a one-pager to help reps pitch [product name] to [persona]. Include key benefits, features, common use cases, and competitor differentiators.",
+        "variables": [
+            "persona",
+            "product name"
+        ]
+    },
+    {
+        "id": "PR-053",
+        "category": "Enablement",
+        "tree_level": 2,
+        "use_case": "Prepare sales objection rebuttals",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "Prospect raising concerns about price, timing, or value.",
+            "T": "Defuse concern and move deal forward.",
+            "A": "Empathy-Validation-Reframe.",
+            "R": "Rebuttal script."
+        },
+        "template": "Create rebuttals to these common objections: [insert 2\u20133 objections]. Make them sound natural and confident, and include a backup stat or story where useful.",
+        "variables": [
+            "insert 2\u20133 objections"
+        ]
+    },
+    {
+        "id": "PR-054",
+        "category": "Enablement",
+        "tree_level": 2,
+        "use_case": "Find customer proof points",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Research recent online reviews, social mentions, and testimonials about [our product OR competitor product]. Summarize top 5 quotes and persona source.",
+        "variables": [
+            "our product OR competitor product"
+        ]
+    },
+    {
+        "id": "PR-055",
+        "category": "Data Analysis",
+        "tree_level": 4,
+        "use_case": "Analyze pipeline conversion rates",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "Reviewing sales performance or pipeline.",
+            "T": "Identify trends and leaks.",
+            "A": "Statistical analysis of CRM data.",
+            "R": "Report with insights."
+        },
+        "template": "Analyze this sales pipeline export. Calculate conversion rates between each stage and identify the biggest drop-off point. Data: [Upload pipeline CSV].",
+        "variables": [
+            "Upload pipeline CSV"
+        ]
+    },
+    {
+        "id": "PR-056",
+        "category": "Data Analysis",
+        "tree_level": 4,
+        "use_case": "Identify top-performing reps",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "Reviewing sales performance or pipeline.",
+            "T": "Identify trends and leaks.",
+            "A": "Statistical analysis of CRM data.",
+            "R": "Report with insights."
+        },
+        "template": "From this dataset of rep activities and closed deals, calculate the close rate for each rep and rank them. Data: [Upload rep performance CSV].",
+        "variables": [
+            "Upload rep performance CSV"
+        ]
+    },
+    {
+        "id": "PR-057",
+        "category": "Data Analysis",
+        "tree_level": 4,
+        "use_case": "Visualize deal velocity",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "Reviewing sales performance or pipeline.",
+            "T": "Identify trends and leaks.",
+            "A": "Statistical analysis of CRM data.",
+            "R": "Report with insights."
+        },
+        "template": "Use this CRM export to calculate average deal velocity per quarter (days from lead to close). Show velocity trend in a simple chart.",
+        "variables": []
+    },
+    {
+        "id": "PR-058",
+        "category": "Data Analysis",
+        "tree_level": 4,
+        "use_case": "Summarize campaign attribution",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "Reviewing sales performance or pipeline.",
+            "T": "Identify trends and leaks.",
+            "A": "Statistical analysis of CRM data.",
+            "R": "Report with insights."
+        },
+        "template": "Match campaign sources to closed-won deals from this data. Identify which campaign drove the most closed revenue. Data: [Upload campaign + deal export].",
+        "variables": [
+            "Upload campaign + deal export"
+        ]
+    },
+    {
+        "id": "PR-059",
+        "category": "Data Analysis",
+        "tree_level": 4,
+        "use_case": "Generate performance comparison chart",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "Reviewing sales performance or pipeline.",
+            "T": "Identify trends and leaks.",
+            "A": "Statistical analysis of CRM data.",
+            "R": "Report with insights."
+        },
+        "template": "Here\u2019s a table of rep performance by quarter: [paste data]. Compare top vs bottom performers. Show chart with trends.",
+        "variables": [
+            "paste data"
+        ]
+    },
+    {
+        "id": "PR-060",
+        "category": "Collateral",
+        "tree_level": 4,
+        "use_case": "Visualize sales process",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Create a funnel graphic showing our sales stages: [insert stages]. Make it clean and easy to read for onboarding docs. Output as simple image.",
+        "variables": [
+            "insert stages"
+        ]
+    },
+    {
+        "id": "PR-061",
+        "category": "Collateral",
+        "tree_level": 4,
+        "use_case": "Visualize B2B sales funnel",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Create an image of a standard B2B SaaS sales funnel with stages: Prospecting, Discovery, Demo, Proposal, Closed Won/Lost.",
+        "variables": []
+    },
+    {
+        "id": "PR-062",
+        "category": "Collateral",
+        "tree_level": 4,
+        "use_case": "Illustrate key sales personas",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Create professional illustrations for 3 personas: CFO, VP of IT, and Operations Manager. Style should be flat and modern.",
+        "variables": []
+    },
+    {
+        "id": "PR-063",
+        "category": "Collateral",
+        "tree_level": 4,
+        "use_case": "Create territory coverage map",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "General sales context.",
+            "T": "Execute sales task.",
+            "A": "LLM generation.",
+            "R": "Text output."
+        },
+        "template": "Create a simplified U.S. map showing sales territories split by region: West, Central, East. Use distinctive color zones.",
+        "variables": []
+    },
+    {
+        "id": "PR-064",
+        "category": "Collateral",
+        "tree_level": 4,
+        "use_case": "Draft team celebration graphic",
+        "source": "OpenAI",
+        "metadata": {
+            "S": "Collateral preparation.",
+            "T": "Improve understanding via visual aid.",
+            "A": "Asset description/design.",
+            "R": "Image or diagram description."
+        },
+        "template": "Design a fun, modern graphic to celebrate \u201cTop Rep of the Month.\u201d Include a placeholder for name/photo and stylized trophy.",
+        "variables": []
     }
 ]
