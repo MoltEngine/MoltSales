@@ -14,7 +14,7 @@ A strategic Sales Agent designed as a **State-Aware Copilot**. This project orga
 
 ## 🌳 Prompt Hierarchy
 
-![Prompt Tree Matrix](./prompt_tree.png)
+<img src="./prompt_tree.png" alt="Prompt Tree Matrix" width="800">
 
 ```text
 Prompts (65)
@@ -87,6 +87,8 @@ Since the visualization fetches local JSON data, you must run it through a local
 
 ### Variable Intelligence Report
 Analyze how shared variables (like `[Company Name]`) flow across different sales categories.
+
+<img src="./users_variable_feedback.png" alt="Variable Analysis Report" width="800">
 
 1. Activate the environment:
    ```bash
