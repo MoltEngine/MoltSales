@@ -5,6 +5,23 @@ The Sales Prompt Router is a **State-Aware Slot-Filling AI Agent**. It uses a 3-
 
 Instead of stuffing large lists of prompts into context windows (which causes token bloat and hallucination), the backend uses a "Zoom and Filter" approach, leveraging LLMs exclusively for classification and variable extraction, while relying on deterministic Python logic and Vector DBs for retrieval.
 
+```mermaid
+graph TD
+    A[User Chat Request] --> B(Phase 1: Dispatcher LLM)
+    B -->|Provides Top 2 Categories| C{Phase 2: Filter & Search}
+    
+    C -->|Filters mvp_prompts.json| D[Semantic Search]
+    D -->|Matches Situation/Task| E[Returns Top 3 Prompts]
+    
+    E --> F(Phase 3: Specialist LLM)
+    F -->|Slot-Fills Variables| G{Are variables missing?}
+    
+    G -->|Yes| H[Ask User Question]
+    H --> A
+    
+    G -->|No| I[Generate Final Output]
+```
+
 ---
 
 ## 2. The 3-Step Retrieval Pipeline
