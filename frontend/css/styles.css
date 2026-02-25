@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-textMain font-sans m-0 p-0 overflow-hidden antialiased;
+  }
+}
+
+@layer components {
+  /* Minimalist Tree Sidebar */
+  .nav-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all duration-200;
+  }
+  .nav-item:hover {
+    @apply bg-surfaceHighlight shadow-sm;
+  }
+  .nav-item.active {
+    @apply bg-surface text-primary border-r-4 border-primary font-bold;
+  }
+  .nav-icon {
+    @apply w-5 h-5 text-textMuted;
+  }
+  .nav-item.active .nav-icon {
+    @apply text-primary;
+  }
+
+  /* Glassmorphism Cards */
+  .glass-card {
+    @apply bg-surface/80 backdrop-blur-md rounded-xl border border-surfaceHighlight shadow-xl p-6 transition-all;
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold transition-colors duration-200 transform hover:scale-[1.02] shadow-lg shadow-blue-500/20 active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply bg-surfaceHighlight hover:bg-gray-600 text-textMain px-5 py-2.5 rounded-lg font-medium transition-colors border border-surface shadow-sm;
+  }
+
+  /* Input fields */
+  .input-field {
+    @apply w-full bg-[#11111b] text-textMain border border-surfaceHighlight rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all;
+  }
+
+  /* Interactive Pill Variables */
+  .var-pill {
+    @apply inline-flex items-center px-3 py-1 mx-1 rounded-full text-sm font-mono cursor-pointer transition-all duration-300 transform hover:scale-105 border relative overflow-hidden;
+  }
+  
+  .var-pill.unfilled {
+    @apply bg-accent/10 text-accent border-accent/40;
+    box-shadow: 0 0 10px rgba(243, 139, 168, 0.2);
+  }
+  .var-pill.unfilled:hover {
+    @apply bg-accent/20 border-accent;
+  }
+  
+  .var-pill.filled {
+    @apply bg-success/10 text-success border-success/40;
+    box-shadow: 0 0 10px rgba(166, 227, 161, 0.2);
+  }
+  .var-pill.filled:hover {
+     @apply bg-success/20 border-success;
+  }
+
+  /* Text area displaying the prompt */
+  .prompt-display {
+    @apply mb-4 text-lg leading-relaxed text-textMain font-light tracking-wide bg-[#1e1e2e]/50 p-6 rounded-lg;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-surfaceHighlight rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/50;
+}

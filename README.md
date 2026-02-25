@@ -73,32 +73,48 @@ uv pip install -r requirements.txt
 
 ## 📊 Usage
 
-### Interactive Tree Visualization
-Since the visualization fetches local JSON data, you must run it through a local web server to avoid browser CORS restrictions.
+### 🎨 1. The Sales Workspace UI (Frontend)
+The application features a modern "Workspace Environment" built with Tailwind CSS.
 
-1. Start a local server:
+1. Start the Tailwind CSS compilation engine (leave this running):
+   ```bash
+   npx tailwindcss -i ./frontend/css/styles.css -o ./frontend/css/output.css -w
+   ```
+2. In a **new terminal tab**, start a local web server to bypass CORS:
    ```bash
    python3 -m http.server 8000
    ```
-2. Visit [http://localhost:8000/visualize.html](http://localhost:8000/visualize.html) in your browser.
+3. Open [http://localhost:8000/frontend/index.html](http://localhost:8000/frontend/index.html) in your browser.
 
-- **Filter**: Toggle between Reddit and OpenAI sources.
-- **Inspect**: Hover over nodes to see STAR metadata, ID, and the full prompt template.
+### 🧠 2. The AI Router Engine (Backend)
+To run the full multi-phase AI pipeline (Dispatcher -> Hybrid Search -> Specialist -> Generator):
 
-### Variable Intelligence Report
-Analyze how shared variables (like `[Company Name]`) flow across different sales categories.
-
-<img src="./users_variable_feedback.png" alt="Variable Analysis Report" width="800">
-
-1. Activate the environment:
+1. Set your Gemini API key:
    ```bash
-   source .venv/bin/activate
+   export GEMINI_API_KEY="your-api-key-here"
    ```
-2. Run the analysis:
+2. Run the interactive CLI router:
+   ```bash
+   python src/router.py
+   ```
+*(Note: The embedded vector database builds locally on the first run using FastEmbed.)*
+
+---
+
+### 🔍 Legacy Tools
+
+#### Interactive Tree Visualization
+1. With the `http.server` running on port 8000, visit [http://localhost:8000/visualize.html](http://localhost:8000/visualize.html).
+- **Filter**: Toggle between Reddit and OpenAI sources.
+- **Inspect**: Hover over nodes to see STAR metadata.
+
+#### Variable Intelligence Report
+Analyze how shared variables flow across different sales categories.
+1. Run the analysis:
    ```bash
    python scripts/analyze_variables.py
    ```
-3. Open the newly generated `variable_analysis_report.html` to view the dashboard.
+2. Open the generated `variable_analysis_report.html` to view the dashboard.
 
 ---
 

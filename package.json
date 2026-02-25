@@ -1,0 +1,29 @@
+{
+  "name": "sales_prompt_router",
+  "version": "1.0.0",
+  "description": "A strategic Sales Agent designed as a **State-Aware Copilot**. This project organizes sales prompts into a hierarchical tree based on the sales development life cycle, enabling intelligent retrieval and analysis.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoltEngine/MoltSales.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MoltEngine/MoltSales/issues"
+  },
+  "homepage": "https://github.com/MoltEngine/MoltSales#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19"
+  }
+}
