@@ -12,6 +12,12 @@ A strategic Sales Agent designed as a **State-Aware Copilot**. This project orga
 
 ---
 
+## 🎥 Demonstration
+
+<video src="./demo.mp4" width="800" controls autoplay loop muted></video>
+
+---
+
 ## 🌳 Prompt Hierarchy
 
 <img src="./prompt_tree.png" alt="Prompt Tree Matrix" width="800">
@@ -45,7 +51,9 @@ Prompts (65)
 │   └── DATA_GENERATION.md    # Methodology and data structure details
 ├── scripts/
 │   └── analyze_variables.py  # Python script for variable intelligence
-├── visualize.html            # Web-based interactive tree visualization
+├── docs/
+│   ├── visualize.html            # Web-based interactive tree visualization
+│   └── variable_analysis_report.html # Analytics dashboard
 ├── agent.md                  # Strategic implementation roadmap
 └── requirements.txt          # Python dependencies
 ```
@@ -73,48 +81,38 @@ uv pip install -r requirements.txt
 
 ## 📊 Usage
 
-### 🎨 1. The Sales Workspace UI (Frontend)
-The application features a modern "Workspace Environment" built with Tailwind CSS.
+### 🚀 Launching the Application
 
-1. Start the Tailwind CSS compilation engine (leave this running):
-   ```bash
-   npx tailwindcss -i ./frontend/css/styles.css -o ./frontend/css/output.css -w
+We've bundled the frontend UI and the Python FastAPI backend into a single startup script for convenience.
+
+1. Create a `.env` file in the root directory and add your Gemini API key:
+   ```env
+   GEMINI_API_KEY="your-api-key-here"
    ```
-2. In a **new terminal tab**, start a local web server to bypass CORS:
+2. Make the script executable (if it isn't already) and run:
    ```bash
-   python3 -m http.server 8000
+   chmod +x start.sh
+   ./start.sh
    ```
 3. Open [http://localhost:8000/frontend/index.html](http://localhost:8000/frontend/index.html) in your browser.
 
-### 🧠 2. The AI Router Engine (Backend)
-To run the full multi-phase AI pipeline (Dispatcher -> Hybrid Search -> Specialist -> Generator):
-
-1. Set your Gemini API key:
-   ```bash
-   export GEMINI_API_KEY="your-api-key-here"
-   ```
-2. Run the interactive CLI router:
-   ```bash
-   python src/router.py
-   ```
 *(Note: The embedded vector database builds locally on the first run using FastEmbed.)*
 
 ---
 
-### 🔍 Legacy Tools
+### 🔍 Documentation & Tools
+The visualization tools have been moved to the `docs/` folder.
 
 #### Interactive Tree Visualization
-1. With the `http.server` running on port 8000, visit [http://localhost:8000/visualize.html](http://localhost:8000/visualize.html).
+Open `docs/visualize.html` in your browser to explore the Prompt Tree (or via the local server: [http://localhost:8000/docs/visualize.html](http://localhost:8000/docs/visualize.html)).
 - **Filter**: Toggle between Reddit and OpenAI sources.
 - **Inspect**: Hover over nodes to see STAR metadata.
 
 #### Variable Intelligence Report
-Analyze how shared variables flow across different sales categories.
-1. Run the analysis:
+Open the pre-generated `docs/variable_analysis_report.html` to view the analytics dashboard, or regenerate it:
    ```bash
    python scripts/analyze_variables.py
    ```
-2. Open the generated `variable_analysis_report.html` to view the dashboard.
 
 ---
 

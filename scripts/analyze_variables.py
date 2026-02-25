@@ -92,7 +92,7 @@ def analyze_variables(json_path):
     fig3.update_layout(template='plotly_dark', showlegend=False)
 
     # Save to a single responsive HTML file
-    output_html = 'variable_analysis_report.html'
+    output_html = 'docs/variable_analysis_report.html'
     
     # Create a combined dashboard using subplots or just multiple HTML divs
     with open(output_html, 'w') as f:
