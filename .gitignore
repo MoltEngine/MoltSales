@@ -5,3 +5,5 @@ local_qdrant/
 .DS_Store
 __pycache__/
 *.pyc
+node_modules/
+frontend/css/output.css
