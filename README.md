@@ -14,7 +14,7 @@ A strategic Sales Agent designed as a **State-Aware Copilot**. This project orga
 
 ## 🎥 Demonstration
 
-<video src="./demo.mp4" width="800" controls autoplay loop muted></video>
+https://github.com/MoltEngine/MoltSales/raw/main/demo.mp4
 
 ---
 
