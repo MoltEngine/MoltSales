@@ -226,21 +226,24 @@ function renderPhase3(data) {
     let missingHtml = '';
     if (data.missing_variables.length > 0) {
         missingHtml = `
-      <div class="mt-3 bg-accent/5 border border-accent/20 rounded-lg px-4 py-3">
-        <div class="flex items-start gap-2">
-          <i class="ph-fill ph-robot text-accent text-lg mt-0.5"></i>
-          <div>
-            <p class="text-xs font-semibold text-accent mb-1">Agent needs more info:</p>
-            <p class="text-sm text-textMain">${data.clarifying_question}</p>
-            <div class="mt-2 space-y-2">
+      <div class="mt-4 bg-[#11111b] border border-surfaceHighlight/60 rounded-xl p-5 shadow-lg shadow-black/20">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0 mt-0.5">
+            <i class="ph-fill ph-robot text-primary text-lg"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-xs font-semibold text-white mb-1">Agent Question</p>
+            <p class="text-sm text-textMuted leading-relaxed mb-5">${data.clarifying_question}</p>
+            
+            <div class="space-y-4">
               ${data.missing_variables.map(v => `
                 <div>
-                  <label class="block text-[10px] text-accent uppercase tracking-wider font-bold mb-1">${v}</label>
-                  <input type="text" data-var="${v}" class="missing-var-input input-field py-2 text-sm border-accent/30 focus:ring-accent/20 focus:border-accent" placeholder="Enter ${v}...">
+                  <label class="block text-[10px] text-textMuted uppercase tracking-wider font-bold mb-1.5">${v}</label>
+                  <input type="text" data-var="${v}" class="missing-var-input input-field py-2.5 text-sm bg-background border-surfaceHighlight focus:ring-primary/30" placeholder="Enter ${v}...">
                 </div>
               `).join('')}
-              <button id="btn-submit-vars" class="btn-primary mt-2 flex items-center gap-2 w-full justify-center">
-                <i class="ph ph-paper-plane-tilt"></i> Fill & Generate
+              <button id="btn-submit-vars" class="btn-primary mt-2 flex items-center justify-center gap-2 w-full py-2.5 shadow-none transition-transform active:scale-[0.98]">
+                <i class="ph ph-magic-wand"></i> Fill & Generate
               </button>
             </div>
           </div>
@@ -250,20 +253,32 @@ function renderPhase3(data) {
     }
 
     dom.phase3.body.innerHTML = `
-    <div class="space-y-3">
-      <div class="flex items-center gap-2">
-        <span class="text-[10px] text-textMuted uppercase tracking-wider font-bold">Winning Prompt:</span>
-        <span class="text-sm font-semibold text-white">${prompt.use_case}</span>
-        <span class="text-[10px] text-textMuted font-mono">(${data.selected_prompt_id})</span>
+    <div class="space-y-2">
+      <div class="flex flex-col gap-1 mb-2">
+        <span class="text-[10px] text-textMuted uppercase tracking-wider font-bold">Winning Prompt</span>
+        <div class="flex items-center gap-2">
+          <span class="text-sm font-semibold text-white">${prompt.use_case}</span>
+          <span class="text-[10px] text-textMuted font-mono bg-surfaceHighlight/30 px-1.5 py-0.5 rounded">${data.selected_prompt_id}</span>
+        </div>
       </div>
-      <div>
-        <span class="text-[10px] text-textMuted uppercase tracking-wider font-bold block mb-1.5">Variables</span>
-        <div class="flex flex-wrap gap-1">${varsHtml}</div>
-      </div>
-      <div class="bg-[#11111b]/50 rounded-lg p-4 border border-surfaceHighlight/30">
-        <span class="text-[10px] text-textMuted uppercase tracking-wider font-bold block mb-2">Template Preview</span>
-        <p class="text-sm text-textMuted leading-relaxed">${templateDisplay}</p>
-      </div>
+
+      <details class="group transition-all">
+        <summary class="text-xs text-textMuted hover:text-white cursor-pointer select-none flex items-center gap-1.5 transition-colors w-max">
+          <i class="ph-bold ph-caret-right transition-transform group-open:rotate-90"></i>
+          View Prompt Template Details
+        </summary>
+        <div class="mt-3 bg-[#11111b]/50 rounded-lg p-4 border border-surfaceHighlight/30 ml-2">
+          <div class="mb-4">
+            <span class="text-[10px] text-textMuted uppercase tracking-wider font-bold block mb-1.5">Variables</span>
+            <div class="flex flex-wrap gap-1.5">${varsHtml}</div>
+          </div>
+          <div>
+            <span class="text-[10px] text-textMuted uppercase tracking-wider font-bold block mb-2">Template Preview</span>
+            <p class="text-[13px] text-textMuted leading-relaxed font-mono">${templateDisplay}</p>
+          </div>
+        </div>
+      </details>
+
       ${missingHtml}
     </div>
   `;
@@ -308,6 +323,13 @@ function renderPhase4(artifact) {
 // ==========================================
 function findContextValue(varName) {
     const ctx = salesStore.context;
+
+    // 1. Exact match first (handles variables filled dynamically in Phase 3)
+    if (ctx[varName]) {
+        return ctx[varName];
+    }
+
+    // 2. Fallback to hardcoded sidebar mappings
     const lower = varName.toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
 
     const map = {
@@ -405,8 +427,67 @@ async function mockPhase3(query, top3, context) {
 }
 
 async function mockPhase4(promptId, context) {
-    await delay(1000);
-    return `Subject: Quick thought on ${context.company_name || '[Company]'}'s growth strategy\n\nHi ${context.prospect_name || '[Name]'},\n\nI noticed ${context.company_name || 'your company'} has been making waves in the ${context.industry || '[industry]'} space — congrats on the momentum.\n\nWe recently helped ${context.social_proof || 'companies like yours'} solve a similar challenge, and I thought it might be worth a quick conversation.\n\nWould you be open to a 15-minute call this week to explore if there's a fit?\n\nBest,\n[Your Name]`;
+    await delay(1200);
+    const prompt = salesStore.pipeline.phase3.prompt;
+    if (!prompt) return "Error: Could not retrieve prompt template.";
+
+    // Let's create a simulated realistic LLM response based on the Prompt ID/Category,
+    // rather than just spitting out the instruction template itself.
+
+    // PR-030: Feature-to-Benefit-to-Proof Translator
+    if (promptId === "PR-030") {
+        const feature = findContextValue("Feature Description") || "our new feature";
+        const persona = findContextValue("Target Executive Persona") || "your persona";
+
+        return `**1. Translated Business Benefit for ${persona}**
+The core benefit of "${feature}" is strictly related to operational efficiency and risk mitigation. For a ${persona}, this translates directly to protecting bottom-line margins while accelerating project timelines without increasing headcount.
+
+**2. Proof Point**
+In our recent deployment with a top 3 logistics provider, this approach reduced manual oversight hours by 42% within the first month, representing $120k in immediate saved labor costs.
+
+**3. "Knockout" Proposal Paragraph**
+"While the technical capability of ${feature} is robust, its true value to a ${persona} lies in cost predictability. By automating the most error-prone segments of the workflow, we can guarantee a 42% reduction in manual oversight. This means your team can scale operations immediately without proportional increases in OpEx, ensuring your margins remain protected as you grow."`;
+    }
+
+    // PR-000: Product Relevance Hook
+    if (promptId === "PR-000") {
+        const company = findContextValue("Company Name") || "your company";
+        const news = findContextValue("Announcement/News/Initiative") || "your recent news";
+        const impact = findContextValue("Business Impact") || "growth";
+
+        return `Hi [Name],
+        
+I saw the news about ${company}'s launch of ${news} — huge congratulations! I can imagine how critical driving ${impact} will be in the coming quarters.
+
+Our platform has helped teams in similar situations achieve their goals faster by streamlining the core workflow. I'd love to share how we helped [Similar Company] boost their throughput by 30%.
+
+Are you open to a brief chat next Tuesday?`;
+    }
+
+    // Generic Mock Fallback
+    let fallbackOutput = `*** MOCK AI GENERATED ARTIFACT ***\n`;
+    fallbackOutput += `(Simulated response for: ${prompt.use_case})\n\n`;
+
+    fallbackOutput += `Here is the drafted content based on your instructions:\n\n`;
+    fallbackOutput += `"Looking at the current landscape, it's clear that the combination of `;
+
+    // weave in variables just to show they were injected
+    const usedVars = [];
+    prompt.variables.forEach(v => {
+        const val = findContextValue(v);
+        if (val) usedVars.push(val);
+    });
+
+    if (usedVars.length > 0) {
+        fallbackOutput += usedVars.join(" and ") + " requires a strategic approach. ";
+    } else {
+        fallbackOutput += "your resources requires a strategic approach. ";
+    }
+
+    fallbackOutput += `We provide the optimal solution to bridge that gap and ensure long-term success."\n\n`;
+    fallbackOutput += `Let me know if you would like me to adjust the tone!`;
+
+    return fallbackOutput;
 }
 
 function delay(ms) {
