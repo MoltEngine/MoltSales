@@ -7,8 +7,8 @@ echo "🎨 Starting Tailwind CSS compiler in background..."
 npx tailwindcss -i ./frontend/css/styles.css -o ./frontend/css/output.css -w &
 TAILWIND_PID=$!
 
-echo "🌐 Starting local web server on port 8000..."
-python3 -m http.server 8000 &
+echo "🌐 Starting FastAPI backend server on port 8000..."
+uv run uvicorn src.api:app --reload --port 8000 &
 SERVER_PID=$!
 
 echo "✨ Backend and Frontend running."
