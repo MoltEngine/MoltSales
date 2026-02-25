@@ -9,79 +9,124 @@
 }
 
 @layer components {
-  /* Minimalist Tree Sidebar */
-  .nav-item {
-    @apply flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all duration-200;
-  }
-  .nav-item:hover {
-    @apply bg-surfaceHighlight shadow-sm;
-  }
-  .nav-item.active {
-    @apply bg-surface text-primary border-r-4 border-primary font-bold;
-  }
-  .nav-icon {
-    @apply w-5 h-5 text-textMuted;
-  }
-  .nav-item.active .nav-icon {
-    @apply text-primary;
-  }
 
-  /* Glassmorphism Cards */
-  .glass-card {
-    @apply bg-surface/80 backdrop-blur-md rounded-xl border border-surfaceHighlight shadow-xl p-6 transition-all;
-  }
-
-  .btn-primary {
-    @apply bg-primary hover:bg-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold transition-colors duration-200 transform hover:scale-[1.02] shadow-lg shadow-blue-500/20 active:scale-95;
-  }
-  
-  .btn-secondary {
-    @apply bg-surfaceHighlight hover:bg-gray-600 text-textMain px-5 py-2.5 rounded-lg font-medium transition-colors border border-surface shadow-sm;
-  }
-
-  /* Input fields */
+  /* ============================== */
+  /* INPUT FIELDS                    */
+  /* ============================== */
   .input-field {
-    @apply w-full bg-[#11111b] text-textMain border border-surfaceHighlight rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all;
+    @apply w-full bg-[#11111b] text-textMain border border-surfaceHighlight rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder:text-textMuted/40;
   }
 
-  /* Interactive Pill Variables */
+  /* ============================== */
+  /* PHASE PIPELINE CARDS           */
+  /* ============================== */
+  .phase-card {
+    @apply bg-surface/60 backdrop-blur-sm rounded-xl border border-surfaceHighlight/50 overflow-hidden animate-slide-up;
+  }
+
+  .phase-header {
+    @apply flex items-center gap-3 px-5 py-3.5 border-b border-surfaceHighlight/30;
+  }
+
+  .phase-number {
+    @apply w-7 h-7 rounded-full bg-primary/15 text-primary text-xs font-bold flex items-center justify-center border border-primary/30;
+  }
+
+  .phase-body {
+    @apply px-5 py-4 text-sm;
+  }
+
+  .phase-status {
+    @apply text-lg;
+  }
+
+  /* Phase result badges */
+  .category-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all;
+  }
+
+  .category-badge.selected {
+    @apply bg-primary/15 text-primary border-primary/30;
+  }
+
+  .prompt-candidate {
+    @apply p-3 rounded-lg border border-surfaceHighlight/50 bg-[#11111b]/50 transition-all hover:border-primary/30;
+  }
+
+  .prompt-candidate.winner {
+    @apply border-success/40 bg-success/5;
+  }
+
+  /* Variable pills within prompt display */
   .var-pill {
-    @apply inline-flex items-center px-3 py-1 mx-1 rounded-full text-sm font-mono cursor-pointer transition-all duration-300 transform hover:scale-105 border relative overflow-hidden;
-  }
-  
-  .var-pill.unfilled {
-    @apply bg-accent/10 text-accent border-accent/40;
-    box-shadow: 0 0 10px rgba(243, 139, 168, 0.2);
-  }
-  .var-pill.unfilled:hover {
-    @apply bg-accent/20 border-accent;
-  }
-  
-  .var-pill.filled {
-    @apply bg-success/10 text-success border-success/40;
-    box-shadow: 0 0 10px rgba(166, 227, 161, 0.2);
-  }
-  .var-pill.filled:hover {
-     @apply bg-success/20 border-success;
+    @apply inline-flex items-center px-2 py-0.5 mx-0.5 rounded-md text-xs font-mono border transition-all;
   }
 
-  /* Text area displaying the prompt */
-  .prompt-display {
-    @apply mb-4 text-lg leading-relaxed text-textMain font-light tracking-wide bg-[#1e1e2e]/50 p-6 rounded-lg;
+  .var-pill.unfilled {
+    @apply bg-accent/10 text-accent border-accent/30;
+  }
+
+  .var-pill.filled {
+    @apply bg-success/10 text-success border-success/30;
+  }
+
+  /* ============================== */
+  /* BUTTONS                         */
+  /* ============================== */
+  .btn-primary {
+    @apply bg-primary hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all active:scale-95 shadow-lg shadow-primary/20;
+  }
+
+  .btn-secondary {
+    @apply bg-surfaceHighlight/50 hover:bg-surfaceHighlight text-textMain px-4 py-2 rounded-lg font-medium text-sm transition-all border border-surfaceHighlight;
+  }
+
+  /* ============================== */
+  /* DEBUG LOG ENTRIES               */
+  /* ============================== */
+  .log-entry {
+    @apply text-xs font-mono leading-snug;
+  }
+
+  .log-phase {
+    @apply text-primary font-bold;
+  }
+
+  .log-info {
+    @apply text-textMuted;
+  }
+
+  .log-success {
+    @apply text-success;
+  }
+
+  .log-warn {
+    @apply text-[#f9e2af];
+  }
+
+  .log-error {
+    @apply text-accent;
+  }
+
+  .log-arrow {
+    @apply text-surfaceHighlight;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
+
 ::-webkit-scrollbar-track {
-  @apply bg-background;
+  @apply bg-transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-  @apply bg-surfaceHighlight rounded-full;
+  @apply bg-surfaceHighlight/70 rounded-full;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary/50;
+  @apply bg-primary/40;
 }

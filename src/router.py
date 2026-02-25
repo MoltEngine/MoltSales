@@ -16,7 +16,7 @@ class DispatcherDecision(BaseModel):
     reasoning: str = Field(description="Brief explanation of why these categories were chosen.")
 
 class SpecialistDecision(BaseModel):
-    selected_prompt_id: str = Field(description="The ID of the single best prompt for the user's scenario.")
+    selected_prompt_id: str = Field(description="The ID of the single best prompt. If NONE of the 3 options are appropriate for the user's scenario, return 'NONE'.")
     missing_variables: List[str] = Field(description="Variables from the prompt template that are NOT present in the session context.")
     clarifying_question: str = Field(description="If variables are missing, a conversational question to ask the user to get this data. If no variables are missing, set to empty string.")
 
@@ -173,9 +173,10 @@ class SalesPromptRouter:
         
         Instructions:
         1. Select the single 'id' of the prompt that best fulfills the user's needs.
-        2. Look at the 'variables' array for that prompt. Compare it against the 'User Context'.
-        3. Identify any variables that are completely missing or currently unknown.
+        2. IF AND ONLY IF all 3 prompts are completely irrelevant to the user's scenario, set 'selected_prompt_id' to "NONE".
+        3. If a prompt is selected, compare its 'variables' against the 'User Context'. Identify completely missing variables.
         4. If variables are missing, write a natural conversational question to ask the user to provide them.
+        5. If "NONE" was selected, use 'clarifying_question' to inform the user that their request isn't specifically covered in the prompt library and ask them to clarify or pick a different topic.
         """
         
         response = self.client.models.generate_content(
@@ -189,6 +190,12 @@ class SalesPromptRouter:
         )
         
         decision = SpecialistDecision.model_validate_json(response.text)
+        
+        if decision.selected_prompt_id == "NONE":
+            print(" -> Agent determined none of the top 3 prompts are a good fit.")
+            print(f" -> Agent Message: {decision.clarifying_question}")
+            return decision
+
         print(f" -> Selected Prompt ID: {decision.selected_prompt_id}")
         if decision.missing_variables:
             print(f" -> Missing Variables: {decision.missing_variables}")
