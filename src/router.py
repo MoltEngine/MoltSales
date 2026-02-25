@@ -92,7 +92,7 @@ class SalesPromptRouter:
     # ------------------------------------------
     # PHASE 1: THE DISPATCHER
     # ------------------------------------------
-    def phase_1_dispatcher(self, user_query: str) -> List[str]:
+    def phase_1_dispatcher(self, user_query: str) -> DispatcherDecision:
         """Uses a tiny context window to route to the Top 2 Categories."""
         print(f"\n[PHASE 1] Dispatcher analyzing query: '{user_query}'")
         
@@ -117,7 +117,7 @@ class SalesPromptRouter:
         decision = DispatcherDecision.model_validate_json(response.text)
         print(f" -> Selected Categories: {decision.categories}")
         print(f" -> Reasoning: {decision.reasoning}")
-        return decision.categories
+        return decision
 
     # ------------------------------------------
     # PHASE 2: FILTER & SEARCH
@@ -220,9 +220,14 @@ class SalesPromptRouter:
         
         # 2. Extract values from the nested session_context dictionary using LLM for smart mapping
         system_prompt = f"""
-        You are a master Sales Copywriter. 
-        Your task is to take the provided template and fill it out perfectly using the Known Context.
-        You must write the final artifact completely based on the template guidelines. 
+        You are a world-class B2B Enterprise Sales Copywriter with a 40% cold reply rate. 
+        Your task is to take the provided template and fulfill it using the Known Context.
+        
+        CRITICAL RULES FOR YOUR WRITING:
+        1. NO FLUFF: Be wildly concise. Cut out all "I hope this finds you well" or "I wanted to reach out" filler.
+        2. HUMAN TONE: Write like a real executive talking to another executive. Confident, direct, and peer-to-peer. Zero "marketing speak" or buzzword soup.
+        3. NO META-TEXT: Return ONLY the final requested email or artifact. DO NOT say "Here is the drafted content:" or "Subject:". Just give the raw text.
+        4. SMART INFERENCE: If the Known Context gives you a company or product, intelligently deduce what their typical pain points or value props might be to make the copy highly specific, not generic.
         
         Template constraints: {json.dumps(target_prompt.get('metadata'), indent=2)}
         Known Context: {json.dumps(session_context, indent=2)}
@@ -232,6 +237,7 @@ class SalesPromptRouter:
         """
         
         # 3. Generate final output natively
+        # Reverting to gemini-2.5-flash due to API quota limits for pro tier on the current key.
         response = self.client.models.generate_content(
             model="gemini-2.5-flash",
             contents=system_prompt,
@@ -265,7 +271,7 @@ if __name__ == "__main__":
         print("====================================")
         
         top_cats = router.phase_1_dispatcher(test_query)
-        top_prompts = router.phase_2_search(test_query, top_cats)
+        top_prompts = router.phase_2_search(test_query, top_cats.categories)
         if top_prompts:
             final_decision = router.phase_3_specialist(test_query, top_prompts, mock_context)
             

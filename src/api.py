@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import List, Dict, Any
 import os
+import traceback
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -57,6 +58,7 @@ async def api_phase_1(req: Phase1Request):
             "reasoning": decision.reasoning
         }
     except Exception as e:
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/phase2")
@@ -65,6 +67,7 @@ async def api_phase_2(req: Phase2Request):
         top_prompts = router.phase_2_search(req.query, req.categories)
         return top_prompts
     except Exception as e:
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/phase3")
@@ -85,6 +88,7 @@ async def api_phase_3(req: Phase3Request):
             "prompt": prompt
         }
     except Exception as e:
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/phase4")
@@ -93,6 +97,7 @@ async def api_phase_4(req: Phase4Request):
         result = router.phase_4_generator(req.promptId, req.context)
         return {"output": result}
     except Exception as e:
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
 # Mount the static files so you can run frontend from the same server
